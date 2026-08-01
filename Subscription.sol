@@ -9,7 +9,7 @@ contract MovieSubscription {
 
     struct UserSubscription {
         uint256 expiryTimestamp;
-        bool is4KSupported;
+        bool isFHDSupported;
     }
 
     mapping(address => UserSubscription) public subscriptions;
@@ -55,14 +55,14 @@ contract MovieSubscription {
 
         subscriptions[msg.sender] = UserSubscription({
             expiryTimestamp: newExpiry,
-            is4KSupported: true
+            isFHDSupported: true
         });
 
         emit Subscribed(msg.sender, _packageType, newExpiry, msg.value);
     }
 
-    function has4KAccess(address _user) external view returns (bool) {
-        return subscriptions[_user].expiryTimestamp > block.timestamp && subscriptions[_user].is4KSupported;
+    function hasFHDAccess(address _user) external view returns (bool) {
+        return subscriptions[_user].expiryTimestamp > block.timestamp && subscriptions[_user].isFHDSupported;
     }
 
     function getExpirationDate(address _user) external view returns (uint256) {
