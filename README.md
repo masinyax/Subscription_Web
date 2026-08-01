@@ -1,47 +1,36 @@
-# Decentralized Movie Subscription Platform
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A Web3-based movie streaming platform offering Full HD (FHD) access managed via Ethereum/EVM Smart Contracts.
+## Getting Started
 
----
+First, run the development server:
 
-## Smart Contract Overview
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-- **Network:** Polygon Amoy Testnet
-- **Contract Address:** `0x6e388b0bca7f0dfcf6469005709de5f78e9d84da`
-- **ABI File:** Available in `./build/MovieSubscriptionABI.json`
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
----
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Key Functions for Frontend & Storage Integration
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-### 1. `subscribe(uint256 _packageType)` *(Payable)*
-Call this function to subscribe or extend an existing membership.
-- `_packageType = 1`: **30-Day Pass** (Full HD Access) - Requires `monthlyFee`
-- `_packageType = 2`: **1-Year Pass** (Full HD Access) - Requires `yearlyFee`
+## Learn More
 
-### 2. `hasFHDAccess(address _user)` *(Read-Only / Free Gas)*
-Checks if a specific wallet address currently holds active membership rights for Full HD streaming.
-- **Returns:** `true` if active, `false` if expired or non-subscribed.
+To learn more about Next.js, take a look at the following resources:
 
-### 3. `getExpirationDate(address _user)` *(Read-Only / Free Gas)*
-Retrieves the exact expiration timestamp for a given user.
-- **Returns:** Unix Timestamp (seconds).
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
----
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Admin Functions (Owner Only)
+## Deploy on Vercel
 
-- `updateFees(uint256 _newMonthlyFee, uint256 _newYearlyFee)`: Update package pricing in Wei.
-- `withdraw()`: Withdraw collected funds from the contract balance.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
----
-
-## 📁 Repository Structure
-
-```text
-Subscription_Web/
-├── contracts/
-│   └── MovieSubscription.sol     # Solidity Smart Contract
-├── build/
-│   └── MovieSubscriptionABI.json # Exported ABI for Web3 integration
-└── README.md                     # Project documentation
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
