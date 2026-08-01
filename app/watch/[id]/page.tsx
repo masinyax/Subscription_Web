@@ -49,7 +49,7 @@ export default function WatchPage() {
             href="/subscription"
             className="text-xs font-semibold text-amber-400 hover:underline flex items-center gap-1"
           >
-            ⚙️ จัดการสิทธิ์ VIP
+            ⚙️ MANAGE MEMBERSHIP
           </Link>
         </div>
 
@@ -79,7 +79,7 @@ export default function WatchPage() {
                   : 'bg-neutral-800/60 border-neutral-700 text-neutral-400 hover:text-white hover:bg-neutral-800'
               }`}
             >
-              <span>🔥 Server 2 (4K VIP IPFS)</span>
+              <span>🔥 Server 2 ( FHD Premium IPFS)</span>
               {has4KAccess ? (
                 <span className="bg-emerald-500 text-black text-[9px] px-1.5 py-0.5 rounded font-black">ACTIVE</span>
               ) : (
@@ -89,7 +89,7 @@ export default function WatchPage() {
           </div>
 
           <div className="text-xs text-neutral-400 px-2">
-            กำลังรับชมผ่าน: <span className="text-white font-semibold">{activePlayer === 1 ? 'Server 1 (ความละเอียดปกติ)' : 'Server 2 (VIP 4K Ultra)'}</span>
+            กำลังรับชมผ่าน: <span className="text-white font-semibold">{activePlayer === 1 ? 'Server 1 (ความละเอียดปกติ)' : 'Server 2 (Premium FHD)'}</span>
           </div>
         </div>
 
@@ -124,16 +124,16 @@ export default function WatchPage() {
                 เบราว์เซอร์ไม่รองรับ
               </video>
             ) : (
-              /* Overlay ล็อก ถ้ายังไม่มี VIP */
+              /* Overlay ล็อก ถ้ายังไม่มีพรีเมียม */
               <div className="absolute inset-0 bg-neutral-950/95 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center space-y-4">
                 <div className="w-16 h-16 bg-red-500/10 border border-red-500/20 rounded-full flex items-center justify-center text-red-500 text-2xl font-bold">
                   🔒
                 </div>
                 <h3 className="text-2xl font-bold text-white">
-                  Server 2 (4K IPFS Stream) สำหรับสมาชิก VIP เท่านั้น
+                  Server 2 (FHD IPFS Stream) สำหรับสมาชิก Premium เท่านั้น
                 </h3>
                 <p className="text-neutral-400 text-sm max-w-md">
-                  ยกระดับภาพยนตร์คมชัดระดับ 4K HDR ไร้โฆษณาด้วยแพ็กเกจ VIP หรือสลับกลับไปใช้ Server 1 เพื่อดูฟรีในความละเอียดปกติ
+                  ยกระดับภาพยนตร์คมชัดระดับ FHD ไร้โฆษณาด้วยแพ็กเกจ Premium หรือสลับกลับไปใช้ Server 1 เพื่อดูฟรีในความละเอียดปกติ
                 </p>
                 <div className="flex gap-3 pt-2">
                   <button

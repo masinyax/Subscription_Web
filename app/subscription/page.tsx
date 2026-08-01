@@ -55,7 +55,7 @@ export default function SubscriptionPage() {
                 <p className="text-sm text-neutral-400">สถานะแพ็กเกจปัจจุบัน</p>
                 <div className="flex items-center gap-3 mt-1">
                   <span className="text-2xl font-bold">
-                    {has4KAccess ? 'VIP 4K Access' : 'Free Plan (ไม่มีสิทธิ์ 4K)'}
+                    {has4KAccess ? 'VIP 4K Access' : 'Free Plan (ไม่มีสิทธิ์ Premiun)'}
                   </span>
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-semibold border ${
@@ -78,7 +78,7 @@ export default function SubscriptionPage() {
                   href="/"
                   className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl text-sm transition"
                 >
-                  ไปที่หน้าดูหนัง 4K 🍿
+                  ไปที่หน้าดูหนัง FHD 🍿
                 </Link>
               )}
             </div>
@@ -99,7 +99,7 @@ export default function SubscriptionPage() {
                 <h3 className="text-lg font-semibold text-neutral-300">Monthly Package</h3>
                 <p className="text-3xl font-bold mt-2">0.1 ETH <span className="text-sm font-normal text-neutral-400">/ 30 วัน</span></p>
                 <ul className="mt-4 text-xs text-neutral-400 space-y-2">
-                  <li>✅ ชมภาพยนตร์ระดับความคมชัด 4K</li>
+                  <li>✅ ชมภาพยนตร์ระดับความคมชัด FHD</li>
                   <li>✅ รองรับ IPFS Stream ความเร็วสูง</li>
                   <li>✅ ต่ออายุอัตโนมัติเมื่อกดสมัครเพิ่ม</li>
                 </ul>
@@ -122,7 +122,7 @@ export default function SubscriptionPage() {
                 <h3 className="text-lg font-semibold text-neutral-300">Yearly Package</h3>
                 <p className="text-3xl font-bold mt-2">1.0 ETH <span className="text-sm font-normal text-neutral-400">/ 365 วัน</span></p>
                 <ul className="mt-4 text-xs text-neutral-400 space-y-2">
-                  <li>✅ สิทธิ์ VIP 4K แบบเต็มปี 365 วัน</li>
+                  <li>✅ สิทธิ์ดูความระเอียดระดับ FHD ทั้งปี 365 วัน</li>
                   <li>✅ ประหยัดกว่าแบบรายเดือน 17%</li>
                   <li>✅ สิทธิ์เข้าถึงก่อนใครตลอดทั้งปี</li>
                 </ul>

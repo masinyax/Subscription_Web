@@ -35,7 +35,7 @@ export default function HomePage() {
                   : 'bg-orange-500/10 text-orange-400 border-orange-500/30'
               }`}
             >
-              {has4KAccess ? 'VIP 4K Active' : 'Free Account (NO 4K)'}
+              {has4KAccess ? 'Premium Active' : 'Free Account (nonActive Premium)'}
             </span>
           )}
 
@@ -51,7 +51,7 @@ export default function HomePage() {
               WEB3 DECENTRALIZED STREAMING
             </span>
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-              ชมภาพยนตร์ & อนิเมะระดับ <span className="bg-gradient-to-r from-red-500 to-amber-500 bg-clip-text text-transparent">4K Ultra HD</span> บน IPFS
+              ชมภาพยนตร์ & อนิเมะระดับ <span className="bg-gradient-to-r from-red-500 to-amber-500 bg-clip-text text-transparent">FHD</span> บน IPFS
             </h1>
             {isConnected && (
               <p className="text-xs text-neutral-400 pt-2">
@@ -63,15 +63,15 @@ export default function HomePage() {
           {!has4KAccess && (
             <div className="bg-neutral-900/80 border border-neutral-800 p-6 rounded-2xl flex flex-col items-center text-center space-y-4 shadow-xl">
               <span className="text-3xl">🍿</span>
-              <h3 className="font-bold text-lg">ปลดล็อก 4K Streaming</h3>
+              <h3 className="font-bold text-lg">ปลดล็อก FHD Streaming</h3>
               <p className="text-xs text-neutral-400 max-w-xs">
-                สมัครแพ็กเกจ VIP เพื่อรับชมคอนเทนต์ทั้งหมดแบบไม่สะดุด
+                สมัครแพ็กเกจ Premium เพื่อรับชมคอนเทนต์ทั้งหมดแบบไม่สะดุด
               </p>
               <Link
                 href="/subscription"
                 className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-xs transition"
               >
-                สมัคร VIP เริ่มต้น 0.1 ETH
+                สมัคร Premium เริ่มต้น 0.1 ETH
               </Link>
             </div>
           )}
@@ -83,7 +83,7 @@ export default function HomePage() {
         <div className="flex justify-between items-end">
           <div>
             <h2 className="text-2xl font-bold">หนังและอนิเมะแนะนำ</h2>
-            <p className="text-xs text-neutral-400 mt-1">คลิกการ์ดเพื่อรับชมวิดีโอ</p>
+            <p className="text-xs text-neutral-400 mt-1">คลิกเพื่อรับชมวิดีโอ</p>
           </div>
         </div>
 
@@ -104,7 +104,7 @@ export default function HomePage() {
                   {/* Badge 4K */}
                   {movie.is4K && (
                     <span className="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider">
-                      4K VIP
+                      Premium
                     </span>
                   )}
 
