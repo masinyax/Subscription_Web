@@ -35,19 +35,6 @@
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_packageType",
-				"type": "uint256"
-			}
-		],
-		"name": "subscribe",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -81,31 +68,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "_newMonthlyFee",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_newYearlyFee",
-				"type": "uint256"
-			}
-		],
-		"name": "updateFees",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "withdraw",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "address",
 				"name": "_user",
 				"type": "address"
@@ -130,7 +92,7 @@
 				"type": "address"
 			}
 		],
-		"name": "has4KAccess",
+		"name": "hasFHDAccess",
 		"outputs": [
 			{
 				"internalType": "bool",
@@ -170,6 +132,19 @@
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "_packageType",
+				"type": "uint256"
+			}
+		],
+		"name": "subscribe",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "",
 				"type": "address"
@@ -184,11 +159,36 @@
 			},
 			{
 				"internalType": "bool",
-				"name": "is4KSupported",
+				"name": "isFHDSupported",
 				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_newMonthlyFee",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_newYearlyFee",
+				"type": "uint256"
+			}
+		],
+		"name": "updateFees",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "withdraw",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{

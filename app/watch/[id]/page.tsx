@@ -12,9 +12,8 @@ export default function WatchPage() {
   const movieId = params.id as string;
   const movie = MOVIES.find((m) => m.id === movieId) || MOVIES[0];
 
-  const { isConnected, has4KAccess, expiryDateFormatted } = useSubscription();
+  const { isConnected, hasFHDAccess, expiryDateFormatted } = useSubscription();
 
-  // State สำหรับสลับเครื่องเล่น: 1 = Standard (Free), 2 = VIP 4K
   const [activePlayer, setActivePlayer] = useState<1 | 2>(1);
 
   return (
@@ -70,7 +69,7 @@ export default function WatchPage() {
               <span>📺 Server 1 (720p / Free)</span>
             </button>
 
-            {/* ปุ่ม Player 2 (VIP 4K Ultra HD) */}
+            {/* ปุ่ม Player 2 (VIP Full HD) */}
             <button
               onClick={() => setActivePlayer(2)}
               className={`px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-2 border ${
@@ -80,7 +79,7 @@ export default function WatchPage() {
               }`}
             >
               <span>🔥 Server 2 ( FHD Premium IPFS)</span>
-              {has4KAccess ? (
+              {hasFHDAccess ? (
                 <span className="bg-emerald-500 text-black text-[9px] px-1.5 py-0.5 rounded font-black">ACTIVE</span>
               ) : (
                 <span className="text-amber-400 text-xs">🔒</span>
@@ -111,9 +110,9 @@ export default function WatchPage() {
             )
           )}
 
-          {/* กรณีเลือก Player 2 (VIP 4K) */}
+          {/* กรณีเลือก Player 2 (VIP Full HD) */}
           {activePlayer === 2 && (
-            has4KAccess ? (
+            hasFHDAccess ? (
               <video
                 className="w-full h-full object-contain"
                 controls

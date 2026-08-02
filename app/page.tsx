@@ -6,7 +6,7 @@ import { MOVIES } from '../data/movies';
 import Link from 'next/link';
 
 export default function HomePage() {
-  const { isConnected, has4KAccess, expiryDateFormatted } = useSubscription();
+  const { isConnected, hasFHDAccess, expiryDateFormatted } = useSubscription();
 
   return (
     <main className="min-h-screen bg-neutral-950 text-white font-sans pb-20">
@@ -30,12 +30,12 @@ export default function HomePage() {
           {isConnected && (
             <span
               className={`px-3 py-1 rounded-full text-xs font-semibold border ${
-                has4KAccess
+                hasFHDAccess
                   ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                   : 'bg-orange-500/10 text-orange-400 border-orange-500/30'
               }`}
             >
-              {has4KAccess ? 'Premium Active' : 'Free Account (nonActive Premium)'}
+              {hasFHDAccess ? 'Premium Active' : 'Free Account (nonActive Premium)'}
             </span>
           )}
 
@@ -51,7 +51,7 @@ export default function HomePage() {
               WEB3 DECENTRALIZED STREAMING
             </span>
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-              ชมภาพยนตร์ & อนิเมะระดับ <span className="bg-gradient-to-r from-red-500 to-amber-500 bg-clip-text text-transparent">FHD</span> บน IPFS
+              ชมภาพยนตร์ & อนิเมะระดับ <span className="bg-gradient-to-r from-red-500 to-amber-500 bg-clip-text text-transparent">Full HD</span> บน IPFS
             </h1>
             {isConnected && (
               <p className="text-xs text-neutral-400 pt-2">
@@ -60,10 +60,10 @@ export default function HomePage() {
             )}
           </div>
 
-          {!has4KAccess && (
+          {!hasFHDAccess && (
             <div className="bg-neutral-900/80 border border-neutral-800 p-6 rounded-2xl flex flex-col items-center text-center space-y-4 shadow-xl">
               <span className="text-3xl">🍿</span>
-              <h3 className="font-bold text-lg">ปลดล็อก FHD Streaming</h3>
+              <h3 className="font-bold text-lg">ปลดล็อก Full HD Streaming</h3>
               <p className="text-xs text-neutral-400 max-w-xs">
                 สมัครแพ็กเกจ Premium เพื่อรับชมคอนเทนต์ทั้งหมดแบบไม่สะดุด
               </p>

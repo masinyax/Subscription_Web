@@ -1,18 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react'; // <-- เพิ่ม useState, useEffect
+import { useState, useEffect } from 'react';
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import MovieSubscriptionABI from '../contracts/MovieSubscriptionABI.json';
 
-const CONTRACT_ADDRESS = (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || '972aef7b686a9fca412e695ed9c7e719') as `0x${string}`;
+const CONTRACT_ADDRESS = (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || '0x6e388b0bca7f0fdcf6469005709de5f78e9d84da') as `0x${string}`;
 
 export function useSubscription() {
   const { address, isConnected } = useAccount();
   
-  // เพิ่ม State เก็บเลขแพ็กเกจที่กำลังกดสมัคร (1 = Monthly, 2 = Yearly, null = ไม่ได้กด)
   const [submittingPackage, setSubmittingPackage] = useState<1 | 2 | null>(null);
 
-  // 1. ดึงวันหมดอายุ
   const { data: rawTimestamp, isLoading: isExpiryLoading, refetch: refetchExpiry } = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: MovieSubscriptionABI,
@@ -21,16 +19,14 @@ export function useSubscription() {
     query: { enabled: Boolean(address) },
   });
 
-  // 2. เช็กสิทธิ์ 4K
-  const { data: has4KAccess, isLoading: is4KLoading, refetch: refetch4K } = useReadContract({
+  const { data: hasFHDAccess, isLoading: isFHDLoading, refetch: refetchFHD } = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: MovieSubscriptionABI,
-    functionName: 'has4KAccess',
+    functionName: 'hasFHDAccess',
     args: address ? [address] : undefined,
     query: { enabled: Boolean(address) },
   });
 
-  // 3. ดึงค่าธรรมเนียม
   const { data: monthlyFee } = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: MovieSubscriptionABI,
@@ -43,11 +39,9 @@ export function useSubscription() {
     functionName: 'yearlyFee',
   });
 
-  // 4. การทำธุรกรรม
   const { data: hash, isPending: isWriting, isError: isWriteError, writeContract } = useWriteContract();
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
 
-  // ถ้าทำรายการเสร็จ หรือเกิด Error / กดยกเลิกใน MetaMask ให้เคลียร์สถานะปุ่ม
   useEffect(() => {
     if (isConfirmed || isWriteError) {
       setSubmittingPackage(null);
@@ -62,7 +56,6 @@ export function useSubscription() {
       return;
     }
 
-    // บันทึกว่ากำลังทำรายการของแพ็กเกจไหน
     setSubmittingPackage(packageType);
 
     writeContract(
@@ -74,7 +67,6 @@ export function useSubscription() {
         value: fee as bigint,
       },
       {
-        // หากผู้ใช้กดยกเลิกใน MetaMask ให้รีเซ็ตปุ่มทันที
         onError: () => setSubmittingPackage(null),
       }
     );
@@ -100,16 +92,16 @@ export function useSubscription() {
   return {
     isConnected,
     userAddress: address,
-    has4KAccess: Boolean(has4KAccess),
+    hasFHDAccess: Boolean(hasFHDAccess),
     expiryDateFormatted: getFormattedExpiryDate(),
-    isLoading: isExpiryLoading || is4KLoading,
-    submittingPackage, // <-- ส่งตัวแประบุแพ็กเกจออกไป
+    isLoading: isExpiryLoading || isFHDLoading,
+    submittingPackage,
     isSubmitting: isWriting || isConfirming,
     isSuccess: isConfirmed,
     handleSubscribe,
     refreshData: () => {
       refetchExpiry();
-      refetch4K();
+      refetchFHD();
     },
   };
 }

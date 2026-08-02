@@ -5,8 +5,8 @@ export interface Movie {
   rating: string;
   coverImage: string;
   description: string;
-  freeVideoUrl: string; // <-- เพิ่ม URL วิดีโอเวอร์ชันดูฟรี (เช่น YouTube Embed หรือ IPFS ความละเอียดธรรมดา)
-  ipfsUrl: string;       // URL วิดีโอ 4K VIP
+  freeVideoUrl: string;
+  ipfsUrl: string;
   is4K: boolean;
 }
 
