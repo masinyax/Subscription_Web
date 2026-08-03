@@ -7,7 +7,7 @@ import MovieSubscriptionABI from '../contracts/MovieSubscriptionABI.json';
 
 const CONTRACT_ADDRESSES: Record<number, `0x${string}`> = {
   [polygon.id]: (process.env.NEXT_PUBLIC_POLYGON_CONTRACT_ADDRESS || '0x6e388b0bca7f0fdcf6469005709de5f78e9d84da') as `0x${string}`,
-  [sepolia.id]: (process.env.NEXT_PUBLIC_SEPOLIA_CONTRACT_ADDRESS || '0xB0494e85cD43E5832a73f61da0EdFA9175269a7f') as `0x${string}`, // <-- ใส่เลข Contract Sepolia ตรงนี้
+  [sepolia.id]: (process.env.NEXT_PUBLIC_SEPOLIA_CONTRACT_ADDRESS || '0xb0494e85cd43e5832a73f61da0edfa9175269a7f') as `0x${string}`,
 };
 
 export function useSubscription() {
