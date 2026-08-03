@@ -2,17 +2,25 @@
 
 import { useState, useEffect } from 'react';
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
+import { polygon, sepolia } from 'wagmi/chains';
 import MovieSubscriptionABI from '../contracts/MovieSubscriptionABI.json';
 
-const CONTRACT_ADDRESS = (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || '0x6e388b0bca7f0fdcf6469005709de5f78e9d84da') as `0x${string}`;
+const CONTRACT_ADDRESSES: Record<number, `0x${string}`> = {
+  [polygon.id]: (process.env.NEXT_PUBLIC_POLYGON_CONTRACT_ADDRESS || '0x6e388b0bca7f0fdcf6469005709de5f78e9d84da') as `0x${string}`,
+  [sepolia.id]: (process.env.NEXT_PUBLIC_SEPOLIA_CONTRACT_ADDRESS || '0xB0494e85cD43E5832a73f61da0EdFA9175269a7f') as `0x${string}`, // <-- ใส่เลข Contract Sepolia ตรงนี้
+};
 
 export function useSubscription() {
-  const { address, isConnected } = useAccount();
+  const { address, isConnected, chainId } = useAccount();
+
+  const contractAddress = (chainId && CONTRACT_ADDRESSES[chainId]) 
+    ? CONTRACT_ADDRESSES[chainId] 
+    : CONTRACT_ADDRESSES[polygon.id];
   
   const [submittingPackage, setSubmittingPackage] = useState<1 | 2 | null>(null);
 
   const { data: rawTimestamp, isLoading: isExpiryLoading, refetch: refetchExpiry } = useReadContract({
-    address: CONTRACT_ADDRESS,
+    address: contractAddress,
     abi: MovieSubscriptionABI,
     functionName: 'getExpirationDate',
     args: address ? [address] : undefined,
@@ -20,7 +28,7 @@ export function useSubscription() {
   });
 
   const { data: hasFHDAccess, isLoading: isFHDLoading, refetch: refetchFHD } = useReadContract({
-    address: CONTRACT_ADDRESS,
+    address: contractAddress,
     abi: MovieSubscriptionABI,
     functionName: 'hasFHDAccess',
     args: address ? [address] : undefined,
@@ -28,13 +36,13 @@ export function useSubscription() {
   });
 
   const { data: monthlyFee } = useReadContract({
-    address: CONTRACT_ADDRESS,
+    address: contractAddress,
     abi: MovieSubscriptionABI,
     functionName: 'monthlyFee',
   });
 
   const { data: yearlyFee } = useReadContract({
-    address: CONTRACT_ADDRESS,
+    address: contractAddress,
     abi: MovieSubscriptionABI,
     functionName: 'yearlyFee',
   });
@@ -60,7 +68,7 @@ export function useSubscription() {
 
     writeContract(
       {
-        address: CONTRACT_ADDRESS,
+        address: contractAddress,
         abi: MovieSubscriptionABI,
         functionName: 'subscribe',
         args: [packageType],

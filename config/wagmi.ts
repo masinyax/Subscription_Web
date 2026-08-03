@@ -23,8 +23,8 @@ export const config = createConfig({
   connectors,
   chains: [polygon, sepolia],
   transports: {
-    [polygon.id]: http(),
-    [sepolia.id]: http(),
+    [polygon.id]: http('https://polygon-rpc.com'),
+    [sepolia.id]: http('https://rpc.sepolia.org'),
   },
   ssr: true,
 });
